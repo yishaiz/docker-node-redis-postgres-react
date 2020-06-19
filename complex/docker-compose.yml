@@ -25,15 +25,15 @@ services:
     ports:
       - '4000:80'
 
-  # dummy_api:
-  #   # depends_on: 
-  #   #   - postgres
-  #   build:
-  #     dockerfile: Dockerfile.dev
-  #     context: ./dummy-server
-  #   volumes:
-  #     - /app/node_modules
-  #     - ./server:/app
+  dummy_api:
+    # depends_on: 
+    #   - postgres
+    build:
+      dockerfile: Dockerfile.dev
+      context: ./dummy-server
+    volumes:
+      - /app/node_modules
+      - ./server:/app
 
   api:
     depends_on: 
