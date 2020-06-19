@@ -25,15 +25,15 @@ services:
     ports:
       - '4000:80'
 
-  dummy_api:
-    # depends_on: 
-    #   - postgres
-    build:
-      dockerfile: Dockerfile.dev
-      context: ./dummy-server
-    volumes:
-      - /app/node_modules
-      - ./server:/app
+  # dummy_api:
+  #   # depends_on: 
+  #   #   - postgres
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./dummy-server
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./server:/app
 
   api:
     depends_on: 
@@ -61,10 +61,16 @@ services:
     volumes:
       - /app/node_modules
       - ./client:/app
+  
   worker:
     build:
       dockerfile: Dockerfile.dev
       context: ./worker
+
+    environment:
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+
     volumes:
       - /app/node_modules
       - ./worker:/app
