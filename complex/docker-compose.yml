@@ -5,6 +5,7 @@ services:
     image: 'postgres:latest'
     environment:
       - POSTGRES_PASSWORD=postgres_password
+
   redis:
     image: 'redis:latest'
     environment:
@@ -15,7 +16,8 @@ services:
   nginx:
     restart: always
     depends_on: 
-      - api
+      - dummy_api
+      # - api
       - client      
     build:
       dockerfile: Dockerfile.dev
@@ -23,7 +25,16 @@ services:
     ports:
       - '4000:80'
 
-  
+  # dummy_api:
+  #   # depends_on: 
+  #   #   - postgres
+  #   build:
+  #     dockerfile: Dockerfile.dev
+  #     context: ./dummy-server
+  #   volumes:
+  #     - /app/node_modules
+  #     - ./server:/app
+
   api:
     depends_on: 
       - postgres
