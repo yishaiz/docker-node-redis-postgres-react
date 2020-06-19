@@ -16,8 +16,8 @@ services:
   nginx:
     restart: always
     depends_on: 
-      - dummy_api
-      # - api
+      # - dummy_api
+      - api
       - client      
     build:
       dockerfile: Dockerfile.dev
