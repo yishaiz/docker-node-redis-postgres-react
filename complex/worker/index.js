@@ -1,5 +1,5 @@
-const keys = require("./keys");
-const redis = require("redis");
+const keys = require('./keys');
+const redis = require('redis');
 
 const redisClient = redis.createClient({
   host: keys.redisHost,
@@ -14,9 +14,17 @@ const fib = (index) => {
   return fib(index - 1) + fib(index - 2);
 };
 
-sub.on("message", (channel, message) => {
-  console.log('worker get message', message)
-  redisClient.hset("values", message, fib(parseInt(message)));
+sub.on('message', (channel, message) => {
+  console.log('worker get message !!!!!!!!!!!!!!!!!!!!', message);
+
+  console.log('result', fib(parseInt(message)))
+
+  redisClient.hset('values', message, fib(parseInt(message)));
 });
 
-sub.subscribe('insert')
+console.log(' redis in worker ', keys.redisHost, keys.redisPort);
+
+// console.log(process.env);
+
+console.log(' worker subscribe to insert !!!');
+sub.subscribe('insert');
