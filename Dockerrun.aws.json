@@ -3,7 +3,25 @@
     "containerDefinitions": [
         {
             "name": "client",
-            "image": "yishaiz/multi-client"
-        }
+            "image": "yishaiz/multi-client",
+            "hostname": "client",
+            "essential": false
+        },
+
+        {
+            "name": "server",
+            "image": "yishaiz/multi-server",
+            "hostname": "api",
+            "essential": false
+        },
+
+        {
+            "name": "worker",
+            "image": "yishaiz/multi-worker",
+            "hostname": "worker",
+            "essential": false
+        },
+
+        
     ]
 }
