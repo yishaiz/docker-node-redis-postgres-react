@@ -26,3 +26,13 @@ after_success:
   - docker push yishaiz/multi-server
   - docker push yishaiz/multi-worker
 
+# deploy to AWS
+
+deploy:
+  provider: elasticbeanstalk
+  region: eu-west-1
+  app: docker-node-redis-postgres-react
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-eu-west-1-558343010837
+  bucket_path: docker-multi
+
