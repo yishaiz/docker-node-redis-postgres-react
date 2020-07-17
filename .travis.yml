@@ -23,10 +23,8 @@ after_success:
 
   - docker push yishaiz/multi-client
   - docker push yishaiz/multi-nginx
-  
-  # temp remove
-  # - docker push yishaiz/multi-server
-  # - docker push yishaiz/multi-worker
+  - docker push yishaiz/multi-server
+  - docker push yishaiz/multi-worker
 
 # deploy to AWS
 
